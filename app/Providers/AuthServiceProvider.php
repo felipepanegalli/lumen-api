@@ -27,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->app->configure('auth');
         // Here you may define how you wish users to be authenticated for your Lumen
         // application. The callback which receives the incoming request instance
         // should return either a User instance or null. You're free to obtain
@@ -38,7 +39,7 @@ class AuthServiceProvider extends ServiceProvider
 //        });
 
         Auth::provider('custom-user', function ($request, array $config){
-            new CustomUserProvider($request['hash'], $config['model']);
+            return new CustomUserProvider($request['hash'], $config['model']);
         });
     }
 }

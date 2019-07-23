@@ -33,7 +33,7 @@ class UserController extends Controller
         ]);
 
         if (!$token = $this->jwt->claims(['login' => $request->login])->attempt(
-            ['login' => $request->login, 'senha' => md5($request->senha)]
+            ['login' => $request->login, 'senha' => $request->senha]
         )) {
             return response()->json(['Usuárino  não encontrado!'], 404);
         }
